@@ -4,7 +4,8 @@ extends Node
 var dialogue = [
 "The third factor of production is labor.",
 "Labor is people with all their efforts, abilities, and skills.",
-"Everybody but a special group called Entrepreneurs is included in this group."
+"Everybody but a special group called Entrepreneurs",
+"is included in this group."
 ]
 
 func _ready():

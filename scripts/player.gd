@@ -28,7 +28,6 @@ func move(cur_speed, speed, accel, delta):
 	return return_speed
 
 func _ready():
-	add_user_signal("show_dialogue")
 	add_user_signal("activate")
 	# Initialization here
 	set_fixed_process(true)

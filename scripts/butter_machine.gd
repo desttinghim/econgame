@@ -17,4 +17,5 @@ func _fixed_process(delta):
 		emit_signal("put_in", body)
 
 func _on_snail_buttered():
+	pass
 	#get_node("../butter").
