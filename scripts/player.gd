@@ -4,6 +4,7 @@ extends RigidBody2D
 export var player_speed = 200
 export var acceleration = 10
 signal show_dialogue(dialogue)
+signal activate(position)
 
 var input_states = preload("res://scripts/input_states.gd")
 
@@ -28,6 +29,7 @@ func move(cur_speed, speed, accel, delta):
 
 func _ready():
 	add_user_signal("show_dialogue")
+	add_user_signal("activate")
 	# Initialization here
 	set_fixed_process(true)
 	set_applied_force(Vector2(0,0))
@@ -49,7 +51,8 @@ func _fixed_process(delta):
 		current_speed.y = move(current_speed.y, 0, acceleration, delta)
 	
 	if btn_action.check() == 3:
-		emit_signal("show_dialogue",str( dialogue, count))
+		#emit_signal("show_dialogue",str( dialogue, count))
+		emit_signal("activate", get_pos())
 		count += 1
 	
 	set_linear_velocity(Vector2(current_speed.x, current_speed.y))
