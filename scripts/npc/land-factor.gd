@@ -11,4 +11,4 @@ func _ready():
 func _on_activate():
 	var boxes = get_tree().get_nodes_in_group("dialogue_box")
 	for box in boxes: 
-		box.show_dialogue(dialogue)
+		box.show_dialogue(dialogue, 0, 0)
