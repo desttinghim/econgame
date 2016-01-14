@@ -2,7 +2,8 @@
 extends Node
 
 var dialogue = [
-"The first factor of production is land."
+"The second factor of production is capital.",
+"Capital is defined as tools and machinery."
 ]
 
 func _ready():

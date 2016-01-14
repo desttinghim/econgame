@@ -17,7 +17,8 @@ func _on_dialogue_timeout_timeout():
 func show_dialogue(dialogue):
 	self.set_opacity(1)
 	get_node("dialogue_text").clear()
-	get_node("dialogue_text").add_text(dialogue)
+	for line in dialogue:
+		get_node("dialogue_text").add_text(str(line, '\n'))
 	get_node("dialogue_timeout").set_wait_time(5)
 	get_node("dialogue_timeout").start()
 

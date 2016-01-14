@@ -52,7 +52,13 @@ func _fixed_process(delta):
 	
 	if btn_action.check() == 3:
 		#emit_signal("show_dialogue",str( dialogue, count))
-		emit_signal("activate", get_pos())
-		count += 1
+		#emit_signal("activate", get_pos())
+		var npcs = get_tree().get_nodes_in_group("npcs")
+		for npc in npcs:
+			var dpos = self.get_pos() - npc.get_pos()
+			var dist = sqrt(dpos.x * dpos.x + dpos.y*dpos.y)
+			if dist<50 and npc.has_method("_on_activate"):
+				npc._on_activate()
+			
 	
 	set_linear_velocity(Vector2(current_speed.x, current_speed.y))
