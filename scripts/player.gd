@@ -57,7 +57,7 @@ func _fixed_process(delta):
 		for npc in npcs:
 			var dpos = self.get_pos() - npc.get_pos()
 			var dist = sqrt(dpos.x * dpos.x + dpos.y*dpos.y)
-			if dist<50 and npc.has_method("_on_activate"):
+			if dist<120 and npc.has_method("_on_activate"):
 				npc._on_activate()
 			
 	
