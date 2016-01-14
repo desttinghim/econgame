@@ -1,15 +1,23 @@
 
 extends RigidBody2D
 
-var input_states = preload("res://scripts/input_states.gd")
-
 export var player_speed = 200
 export var acceleration = 10
+signal show_dialogue(dialogue)
+
+var input_states = preload("res://scripts/input_states.gd")
 
 var btn_left = input_states.new("btn_left")
 var btn_right = input_states.new("btn_right")
 var btn_down = input_states.new("btn_down")
 var btn_up = input_states.new("btn_up")
+var btn_action = input_states.new("btn_action")
+
+var dialogue = """
+This is some text for the textbox. Yippee!
+Multi line and everything.
+"""
+var count = 0
 
 var current_speed = Vector2(0, 0)
 
@@ -19,6 +27,7 @@ func move(cur_speed, speed, accel, delta):
 	return return_speed
 
 func _ready():
+	add_user_signal("show_dialogue")
 	# Initialization here
 	set_fixed_process(true)
 	set_applied_force(Vector2(0,0))
@@ -38,5 +47,9 @@ func _fixed_process(delta):
 		current_speed.y = move(current_speed.y, player_speed, acceleration, delta)
 	else:
 		current_speed.y = move(current_speed.y, 0, acceleration, delta)
+	
+	if btn_action.check() == 3:
+		emit_signal("show_dialogue",str( dialogue, count))
+		count += 1
 	
 	set_linear_velocity(Vector2(current_speed.x, current_speed.y))
