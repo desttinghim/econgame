@@ -10,23 +10,19 @@ var dialog_dict = {
 
 func _ready():
 	set_opacity(0)
+	line_node = get_node("text")
+	line_node.set_size( get_size() - Vector2(10, 10) )
 
 func show_dialog( line ):
 	set_opacity(1)
-	add_child(RichTextLabel.new())
-	line_node = get_child(get_child_count()-1)
 	
-	line_node.set_use_bbcode(true)
-	line_node.set_visible_characters(-1)
-	line_node.parse_bbcode(dialog_dict[line])
+	line_node.set_bbcode( dialog_dict[line] )
 	
 	print(dialog_dict[line])
-	print(line_node.is_using_bbcode())
-	print(line_node.get_total_character_count())
 
 func end_dialog():
 	set_opacity( 0 )
-	remove_child(line_node)
+	line_node.set_bbcode( "" )
 
 func _on_NPC_show_dialog( line ):
 	show_dialogue( line )
