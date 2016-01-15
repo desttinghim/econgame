@@ -2,10 +2,11 @@
 extends StaticBody2D
 
 var raycast_snail = null
+export var line = "butter_machine"
 signal put_in(body)
 
 func _ready():
-	#add_user_signal("put_in")
+	add_to_group("npcs")
 	raycast_snail = get_node("RayCast2D")
 	raycast_snail.add_exception(self)
 	# Initialization here
@@ -17,5 +18,7 @@ func _fixed_process(delta):
 		emit_signal("put_in", body)
 
 func _on_snail_buttered():
-	pass
-	#get_node("../butter").
+	var butter = get_node("../butter")
+	butter.set_opacity(1)
+	butter.set_pos(get_node("Position2D").get_global_pos())
+	butter.set_linear_velocity((butter.get_pos() - get_pos()).normalized() * 10)
