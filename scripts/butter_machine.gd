@@ -3,6 +3,7 @@ extends StaticBody2D
 
 var raycast_snail = null
 export var line = "butter_machine"
+var talking = false
 signal put_in(body)
 
 func _ready():

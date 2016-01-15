@@ -56,6 +56,12 @@ func _fixed_process(delta):
 		set_linear_velocity(Vector2(0,0))
 		
 	if btn_action.check() == 3:
+		if walking == false:
+			start_walking()
+			var boxes = get_tree().get_nodes_in_group(("dialogue_box"))
+			for box in boxes:
+				box.end_dialog()
+
 		var npcs = get_tree().get_nodes_in_group("npcs")
 		for npc in npcs:
 			var dpos = self.get_pos() - npc.get_pos()
