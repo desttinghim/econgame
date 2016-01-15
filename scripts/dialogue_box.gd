@@ -3,7 +3,7 @@ extends Panel
 
 var line_node
 var dialog_dict = {
-	capital = "Hello! I'm Capital Man, wizard of [b]Capital[/b]. I like things, all sorts of things! For example, that butter making machine over there. It can turn practically anything into butter, though it works best on snails. It's the sort of [i]capital[/i] that produces a lot of value for a company.",
+	capital = "Hello! I'm Capital Man, wizard of [b]Capital[/b]. I like things, all sorts of things! For example, that butter making machine to the right. It can turn practically anything into butter, though it works best on snails. It's the sort of [i]capital[/i] that produces a lot of value for a company.",
 	land = "I'm Land Dude, wizard of [b]Land[/b]. I, like, handle things like land. And animals. Basically anything not made by man. I'm [b]all natural[/b], man. And so is [b]Land[/b], man.",
 	labor = "Greetings, I am Labor Lad, wizard of [b]Labor[/b]! I'm all about [b]people and what they do[/b]. Honestly, I don't like to work much myself, but I like to watch others work!",
 	snail = "This is a snail. It is your [b]land[/b] factor of production.",
