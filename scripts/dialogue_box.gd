@@ -1,47 +1,32 @@
 
 extends Panel
 
-var showagain = false
-var shownext = 0
-var showend
-var temp_dialogue
-
-func _on_player_show_dialogue(dialogue):
-	show_dialogue(dialogue)
-
+var line_node
+var dialog_dict = {
+	capital = "Hello! I'm Capital Man. I like things, all sorts of things! For example, that butter making machine over there. It can turn practically anything into butter, though it works best on snails. It's the sort of [i]capital[/i] that produces a lot of value for a company.",
+	land = "I'm Land Dude. I, like, handle things like land. And animals. Basically anything not made by man. I'm [b]all natural[/b], man. ",
+	labor = "Greetings, I am Labor Lad! I'm all about [b]people and what they do[/b]."
+}
 
 func _ready():
-	#connect("show_dialogue", self, "_receive_dialogue")
-	self.set_opacity(0)
-	pass
+	set_opacity(0)
 
-func _on_dialogue_timeout_timeout():
-	get_node("dialogue_text").clear()
-	if showagain:
-		show_dialogue(temp_dialogue, shownext, showend)
-	else:
-		self.set_opacity(0)
+func show_dialog( line ):
+	set_opacity(1)
+	add_child(RichTextLabel.new())
+	line_node = get_child(get_child_count()-1)
+	
+	line_node.set_use_bbcode(true)
+	line_node.set_visible_characters(-1)
+	line_node.parse_bbcode(dialog_dict[line])
+	
+	print(dialog_dict[line])
+	print(line_node.is_using_bbcode())
+	print(line_node.get_total_character_count())
 
-func show_dialogue(dialogue, page, endpage):
-	self.set_opacity(1)
-	get_node("dialogue_text").clear()
-	
-	var countto = min(3,dialogue.size()-1)
-	
-	for line in range(countto):
-		get_node("dialogue_text").add_text(str(dialogue[line], '\n'))
-	
-	
-	get_node("dialogue_timeout").set_wait_time(1)
-	get_node("dialogue_timeout").start()
-	
-	if page == endpage:
-		showagain = false
-	else:
-		showagain = true
-		shownext = page+1
-		showend = endpage
-		temp_dialogue = dialogue
+func end_dialog():
+	set_opacity( 0 )
+	remove_child(line_node)
 
-func _on_NPC_show_dialogue( dialogue ):
-	show_dialogue(dialogue)
+func _on_NPC_show_dialog( line ):
+	show_dialogue( line )
